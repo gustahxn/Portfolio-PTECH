@@ -3,355 +3,550 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Portfólio PTECH</title>
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <title>Portfólio PTECH | Momentos Marcantes</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
     <style>
         :root {
-            --cor-primaria: #1a237e;
-            --cor-secundaria: #3949ab;
-            --cor-fundo: #eef1f5;
-            --cor-texto: #37474f;
-            --cor-card: #ffffff;
-            --sombra-card: 0 8px 16px rgba(0, 0, 0, 0.1);
+            --bg-black: #000000;
+            --bg-dark: #0d0d0d;
+            --accent-pink: #ff0080;
+            --accent-purple: #7c00ff;
+            --text-light: #ffffff;
+            --text-dim: #999999;
+            --border-color: #1a1a1a;
+            --card-hover-bg: rgba(255, 0, 128, 0.05); 
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
         }
 
         body {
-            margin: 0;
-            font-family: 'Roboto', sans-serif;
-            background-color: var(--cor-fundo);
-            color: var(--cor-texto);
+            font-family: 'Inter', sans-serif;
+            background: var(--bg-black);
+            color: var(--text-light);
             line-height: 1.6;
-            scroll-behavior: smooth;
+            overflow-x: hidden;
+            text-rendering: optimizeLegibility;
         }
 
-        header {
-            background-color: var(--cor-primaria);
-            color: #fff;
-            text-align: center;
-            padding: 60px 20px;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+        .noise {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            opacity: 0.05; 
+            z-index: 100;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/rect%3E%3C/svg%3E");
         }
 
-        header h1 {
-            font-size: 3.2rem;
-            margin-bottom: 5px;
-            font-weight: 700;
-        }
-
-        header p {
-            font-size: 1.4rem;
-            margin: 0;
-            opacity: 0.9;
-            font-weight: 300;
+        .spotlight {
+            position: fixed;
+            width: 700px; 
+            height: 700px;
+            background: radial-gradient(circle, rgba(255,0,128,0.1) 0%, transparent 70%);
+            pointer-events: none;
+            z-index: 1;
+            transform: translate(-50%, -50%); 
+            transition: all 0.1s ease-out;
         }
 
         main {
-            padding: 50px 20px;
+            position: relative;
+            padding: 50px 20px 100px;
+            z-index: 2;
         }
 
-        section.ano {
-            margin-bottom: 70px;
+        header {
+            padding: 150px 20px 100px;
             text-align: center;
+            background: var(--bg-black);
+            z-index: 2;
         }
 
-        section.ano h2 {
-            font-size: 2.5rem;
-            color: var(--cor-secundaria);
-            margin-bottom: 40px;
-            padding-bottom: 10px;
-            border-bottom: 3px solid var(--cor-secundaria);
+        header h1 {
+            font-size: 5rem;
+            font-weight: 800;
+            letter-spacing: -0.04em;
+            margin-bottom: 5px;
+            color: var(--text-light);
+            text-transform: uppercase;
+            position: relative;
+        }
+        
+        header p {
+            font-size: 1.1rem;
+            color: var(--text-dim);
+            font-weight: 400;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+        }
+  
+        section.ano {
+            max-width: 1400px;
+            margin: 0 auto 100px;
+            padding-top: 50px;
+        }
+        
+        .section-header {
+            text-align: left;
+            margin-bottom: 50px; 
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 15px;
+        }
+
+        .section-header h2 {
+            font-size: 3rem;
+            font-weight: 700;
+            color: var(--text-light);
+            letter-spacing: -0.02em;
+            position: relative;
             display: inline-block;
-            font-weight: 500;
         }
 
         .grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-            gap: 30px;
-            max-width: 1280px;
-            margin: 0 auto;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); 
+            gap: 20px; 
         }
 
         article.card {
-            background-color: var(--cor-card);
-            border-radius: 12px;
-            box-shadow: var(--sombra-card);
+            background: var(--bg-dark);
             overflow: hidden;
-            transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
-            border: 1px solid rgba(0, 0, 0, 0.05);
+            position: relative;
+            border: 1px solid var(--border-color);
+            transition: all 0.3s ease-in-out;
+            cursor: pointer;
+            border-radius: 8px;
+            aspect-ratio: 16/9;
         }
 
         article.card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
+            transform: translateY(-5px); 
+            box-shadow: 0 10px 30px rgba(255, 0, 128, 0.1);
+            background: var(--card-hover-bg); 
+        }
+
+        article.card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, var(--accent-pink), var(--accent-purple));
+            opacity: 0;
+            transition: opacity 0.3s ease-in-out;
+            z-index: 2;
+            mix-blend-mode: screen;
+        }
+
+        article.card:hover::before {
+            opacity: 0.05;
+        }
+
+        .card-image-wrapper {
+            width: 100%;
+            height: 100%;
         }
 
         article.card img {
             width: 100%;
-            height: 220px;
+            height: 100%;
             object-fit: cover;
-            display: block;
-            border-bottom: 3px solid var(--cor-secundaria);
-            transition: opacity 0.3s;
+            filter: brightness(0.5) contrast(1.1);
+            transition: all 0.5s ease;
         }
 
         article.card:hover img {
-            opacity: 0.9;
+            filter: brightness(0.8) contrast(1); 
+            transform: scale(1.05); 
         }
 
         .card-content {
-            padding: 20px 18px;
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            padding: 25px 20px; 
+            background: linear-gradient(to top, rgba(0,0,0,0.95) 0%, rgba(0,0,0,0.4) 100%);
+            z-index: 3;
+            transition: background 0.3s;
+            transform: translateY(0);
+            opacity: 1;
+        }
+        
+        article.card:hover .card-content {
+             background: linear-gradient(to top, rgba(0,0,0,1) 0%, rgba(0,0,0,0.6) 100%);
         }
 
         .card-content h3 {
-            margin: 0;
-            font-size: 1.3rem;
-            color: var(--cor-primaria);
-            text-align: center;
+            font-size: 1.25rem; /* Reduzido */
             font-weight: 700;
             margin-bottom: 5px;
+            color: var(--text-light);
+            letter-spacing: 0;
         }
 
         .card-content p {
-            font-size: 0.95rem;
-            margin-top: 10px;
-            text-align: center;
-            color: var(--cor-texto);
+            font-size: 0.9rem;
+            color: var(--text-dim);
+            font-weight: 300;
+            line-height: 1.4;
         }
 
-        footer {
-            background-color: var(--cor-primaria);
-            color: #fff;
-            text-align: center;
-            padding: 25px;
-            font-size: 1rem;
-            font-weight: 300;
+        .year-indicator {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            font-size: 0.7rem;
+            color: var(--text-light);
+            background-color: var(--accent-pink);
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-weight: 700;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            z-index: 4;
+            opacity: 0.8;
+            transition: opacity 0.3s;
         }
         
-        @media (max-width: 768px) {
+        article.card:hover .year-indicator {
+            opacity: 1;
+            background-color: var(--accent-purple);
+        }
+
+        /* Rodapé */
+        footer {
+            background: var(--bg-black);
+            text-align: center;
+            padding: 40px 25px; /* Reduzido */
+            position: relative;
+            z-index: 2;
+            border-top: 1px solid var(--border-color);
+        }
+
+        footer p {
+            color: var(--text-dim);
+            font-size: 0.85rem;
+            font-weight: 400;
+            letter-spacing: 0.1em;
+        }
+
+        @media (max-width: 900px) {
+            header h1 {
+                font-size: 4rem;
+            }
+            .section-header h2 {
+                font-size: 2.2rem;
+            }
+            .grid {
+                gap: 15px;
+            }
+            article.card {
+                 aspect-ratio: 4/3; 
+            }
+        }
+        
+        @media (max-width: 500px) {
             header h1 {
                 font-size: 2.5rem;
             }
-            header p {
-                font-size: 1.1rem;
+             header p {
+                font-size: 0.9rem;
+                letter-spacing: 0.1em;
             }
-            section.ano h2 {
-                font-size: 2rem;
+            .section-header {
+                text-align: center;
+            }
+            .section-header h2 {
+                font-size: 1.8rem;
+            }
+            main {
+                 padding: 30px 10px 80px;
+            }
+            .card-content p {
+                font-size: 0.85rem;
             }
         }
     </style>
 </head>
 <body>
 
+    <div class="noise"></div>
+    <div class="spotlight" id="spotlight"></div>
+
     <header>
-        <h1>Portfólio PTECH</h1>
-        <p>Momentos marcantes ao longo da jornada P-TECH!</p>
+        <h1><span class="accent-text">PORTFÓLIO</span> PTECH</h1>
+        <p>Momentos Marcantes & Insights Tecnológicos</p>
     </header>
 
     <main>
 
         <section class="ano">
-            <h2>Primeiro Ano - 2023</h2>
+            <div class="section-header">
+                <h2>2025</h2>
+            </div>
             <div class="grid">
-                <article class="card">
-                    <img src="img/(1) 27-04-23/tegra p-tech.jpeg" alt="27-04-23">
+                 <article class="card">
+                    <div class="card-image-wrapper">
+                        <img src="img/Eduzz 03-09 1.jpeg" alt="03-09-25">
+                    </div>
+                    <div class="year-indicator">03 SET</div>
                     <div class="card-content">
-                        <h3>27/04/2023</h3>
-                        <p>Encontro com representantes da Tegra para conhecer o projeto PTECH.</p>
+                        <h3>Eduzz: Segurança da Informação</h3>
+                        <p>Segurança da informação e como proteger seus dados online.</p>
                     </div>
                 </article>
-
                 <article class="card">
-                    <img src="img/05 05 2023.jpeg" alt="04-05-23">
+                    <div class="card-image-wrapper">
+                        <img src="img/ptech-16-09-eduzz1.png" alt="16-09-25">
+                    </div>
+                    <div class="year-indicator">16 SET</div>
                     <div class="card-content">
-                        <h3>04/05/2023</h3>
-                        <p>Palestra inspiradora sobre carreira com o fundador da Itix.</p>
+                        <h3>Eduzz: IA no Cotidiano</h3>
+                        <p>Aplicações práticas da inteligência artificial no cotidiano.</p>
                     </div>
                 </article>
-
                 <article class="card">
-                    <img src="img/(2) 05-05-23/IMG-20240329-WA0008.jpg" alt="05-05-23">
+                    <div class="card-image-wrapper">
+                        <img src="img/27-08-25.jpeg" alt="27-08-25">
+                    </div>
+                    <div class="year-indicator">27 AGO</div>
                     <div class="card-content">
-                        <h3>05/05/2023</h3>
-                        <p>Conversa sobre tecnologia e inteligência artificial com a equipe da Itix.</p>
+                        <h3>Itix: Capacitação em Banco de Dados</h3>
+                        <p>Capacitação prática em bancos de dados para iniciantes.</p>
                     </div>
                 </article>
-
                 <article class="card">
-                    <img src="img/11 05.png" alt="11-05-23">
+                    <div class="card-image-wrapper">
+                        <img src="img/20-08-25.png" alt="20-08-25">
+                    </div>
+                    <div class="year-indicator">20 AGO</div>
                     <div class="card-content">
-                        <h3>11/05/2023</h3>
-                        <p>Discussão sobre ética, valores e atitudes no ambiente profissional.</p>
+                        <h3>Eduzz: Produtividade e Tempo</h3>
+                        <p>Técnicas para melhorar a produtividade e a gestão do tempo.</p>
                     </div>
                 </article>
-
                 <article class="card">
-                    <img src="img/(3) 16-11-23/b.jpg" alt="16-11-23">
+                    <div class="card-image-wrapper">
+                        <img src="img/13-05-25.png" alt="13-05-25">
+                    </div>
+                    <div class="year-indicator">13 MAI</div>
                     <div class="card-content">
-                        <h3>16/11/2023</h3>
-                        <p>Oficina com a Itix: uso de Scrum em projeto de sustentabilidade.</p>
+                        <h3>Eduzz: Empreendedorismo na TI</h3>
+                        <p>Explorando o empreendedorismo e inovação dentro da TI.</p>
+                    </div>
+                </article>
+                <article class="card">
+                    <div class="card-image-wrapper">
+                        <img src="img/23-04-25.png" alt="23-04-25">
+                    </div>
+                    <div class="year-indicator">23 ABR</div>
+                    <div class="card-content">
+                        <h3>Eduzz: Networking e LinkedIn</h3>
+                        <p>Estratégias para fortalecer o networking e perfil no LinkedIn.</p>
+                    </div>
+                </article>
+                <article class="card">
+                    <div class="card-image-wrapper">
+                        <img src="img/16-04-25.jpeg" alt="16-04-25">
+                    </div>
+                    <div class="year-indicator">16 ABR</div>
+                    <div class="card-content">
+                        <h3>Itix: Carreira e Suporte Técnico</h3>
+                        <p>Conversa prática sobre carreira e suporte técnico no dia a dia.</p>
+                    </div>
+                </article>
+                <article class="card">
+                    <div class="card-image-wrapper">
+                        <img src="img/10-04-25.png" alt="10-04-25">
+                    </div>
+                    <div class="year-indicator">10 ABR</div>
+                    <div class="card-content">
+                        <h3>Itix: Desafios do Primeiro Emprego</h3>
+                        <p>Superando os desafios do primeiro emprego na área de tecnologia.</p>
                     </div>
                 </article>
             </div>
         </section>
-
+        
         <section class="ano">
-            <h2>Segundo Ano - 2024</h2>
+            <div class="section-header">
+                <h2>2024</h2>
+            </div>
             <div class="grid">
                 <article class="card">
-                    <img src="img/(4) 08-04-24/1.jpg" alt="08-04-24">
+                    <div class="card-image-wrapper">
+                        <img src="img/ptech carreiras.jpeg" alt="17-10-24">
+                    </div>
+                    <div class="year-indicator">17 OUT</div>
                     <div class="card-content">
-                        <h3>08/04/2024</h3>
-                        <p>Itix: Criatividade e inovação como diferenciais na área de tecnologia.</p>
+                        <h3>IOCHPE: Educação e Carreira</h3>
+                        <p>Palestra online sobre o papel da educação na construção da carreira.</p>
                     </div>
                 </article>
-
                 <article class="card">
-                    <img src="img/(5) 23-05-24/quinta.jpeg" alt="23-05-24">
+                    <div class="card-image-wrapper">
+                        <img src="img/10 10 ptech.jpeg" alt="10-10-24">
+                    </div>
+                    <div class="year-indicator">10 OUT</div>
                     <div class="card-content">
-                        <h3>23/05/2024</h3>
-                        <p>Tegra: Explorando as oportunidades da inteligência artificial no mercado.</p>
+                        <h3>Tegra: Low Code</h3>
+                        <p>Introdução ao desenvolvimento com ferramentas low code.</p>
                     </div>
                 </article>
-
-                <article class="card">
-                    <img src="img/liderença.jpeg" alt="27-05-24">
+                 <article class="card">
+                    <div class="card-image-wrapper">
+                        <img src="img/(11) 24-09-24/Captura de tela 2024-09-24 091421.png" alt="24-09-24">
+                    </div>
+                    <div class="year-indicator">24 SET</div>
                     <div class="card-content">
-                        <h3>27/05/2024</h3>
-                        <p>Eduzz: Liderança moderna e gestão 3.0 com Victor Palencia.</p>
+                        <h3>Eduzz: Capricho</h3>
+                        <p>A importância do capricho como habilidade rara no mercado atual.</p>
                     </div>
                 </article>
-
                 <article class="card">
-                    <img src="img/(6)18-06-24/tegra.jpeg" alt="18-06-24">
+                    <div class="card-image-wrapper">
+                        <img src="img/(10) 05-09-24/20240905_092541.jpg" alt="05-09-24">
+                    </div>
+                    <div class="year-indicator">05 SET</div>
                     <div class="card-content">
-                        <h3>18/06/2024</h3>
+                        <h3>Tegra: IA Generativa</h3>
+                        <p>Aplicações da IA generativa nas carreiras de TI.</p>
+                    </div>
+                </article>
+                <article class="card">
+                    <div class="card-image-wrapper">
+                        <img src="img/(9) 29-08-24/UNO-4-2024-08-29.png" alt="29-08-24">
+                    </div>
+                    <div class="year-indicator">29 AGO</div>
+                    <div class="card-content">
+                        <h3>UNO: Fluxo Comercial</h3>
+                        <p>Como funciona o fluxo de operações comerciais na prática.</p>
+                    </div>
+                </article>
+                <article class="card">
+                    <div class="card-image-wrapper">
+                        <img src="img/(8) 28-08-24/EDUZZ-0-2024-08-28.png" alt="28-08-24">
+                    </div>
+                    <div class="year-indicator">28 AGO</div>
+                    <div class="card-content">
+                        <h3>Eduzz: Organização Pessoal</h3>
+                        <p>Organização pessoal como chave para o sucesso profissional.</p>
+                    </div>
+                </article>
+                <article class="card">
+                    <div class="card-image-wrapper">
+                        <img src="img/(7) 31-07-24/eduzz3107.jpeg" alt="31-07-24">
+                    </div>
+                    <div class="year-indicator">31 JUL</div>
+                    <div class="card-content">
+                        <h3>Eduzz: Cibersegurança</h3>
+                        <p>Cibersegurança e os desafios da era digital.</p>
+                    </div>
+                </article>
+                <article class="card">
+                    <div class="card-image-wrapper">
+                        <img src="img/(6)18-06-24/tegra.jpeg" alt="18-06-24">
+                    </div>
+                    <div class="year-indicator">18 JUN</div>
+                    <div class="card-content">
+                        <h3>Itix: Homelabs</h3>
                         <p>Conversa com estagiários Itix e introdução aos Homelabs.</p>
                     </div>
                 </article>
-
                 <article class="card">
-                    <img src="img/(7) 31-07-24/eduzz3107.jpeg" alt="31-07-24">
+                    <div class="card-image-wrapper">
+                        <img src="img/liderença.jpeg" alt="27-05-24">
+                    </div>
+                    <div class="year-indicator">27 MAI</div>
                     <div class="card-content">
-                        <h3>31/07/2024</h3>
-                        <p>Eduzz: Cibersegurança e os desafios da era digital.</p>
+                        <h3>Eduzz: Liderança 3.0</h3>
+                        <p>Liderança moderna e gestão 3.0 com Victor Palencia.</p>
                     </div>
                 </article>
-
                 <article class="card">
-                    <img src="img/(8) 28-08-24/EDUZZ-0-2024-08-28.png" alt="28-08-24">
+                    <div class="card-image-wrapper">
+                        <img src="img/(5) 23-05-24/quinta.jpeg" alt="23-05-24">
+                    </div>
+                    <div class="year-indicator">23 MAI</div>
                     <div class="card-content">
-                        <h3>28/08/2024</h3>
-                        <p>Eduzz: Organização pessoal como chave para o sucesso profissional.</p>
+                        <h3>Tegra: Oportunidades em IA</h3>
+                        <p>Explorando as oportunidades da inteligência artificial no mercado.</p>
                     </div>
                 </article>
-
                 <article class="card">
-                    <img src="img/(9) 29-08-24/UNO-4-2024-08-29.png" alt="29-08-24">
-                    <div class="card-content">
-                        <h3>29/08/2024</h3>
-                        <p>UNO: Como funciona o fluxo de operações comerciais na prática.</p>
+                    <div class="card-image-wrapper">
+                        <img src="img/(4) 08-04-24/1.jpg" alt="08-04-24">
                     </div>
-                </article>
-
-                <article class="card">
-                    <img src="img/(10) 05-09-24/20240905_092541.jpg" alt="05-09-24">
+                    <div class="year-indicator">08 ABR</div>
                     <div class="card-content">
-                        <h3>05/09/2024</h3>
-                        <p>Tegra: Aplicações da IA generativa nas carreiras de TI.</p>
-                    </div>
-                </article>
-
-                <article class="card">
-                    <img src="img/(11) 24-09-24/Captura de tela 2024-09-24 091421.png" alt="24-09-24">
-                    <div class="card-content">
-                        <h3>24/09/2024</h3>
-                        <p>Eduzz: A importância do capricho como habilidade rara no mercado atual.</p>
-                    </div>
-                </article>
-
-                <article class="card">
-                    <img src="img/10 10 ptech.jpeg" alt="10-10-24">
-                    <div class="card-content">
-                        <h3>10/10/2024</h3>
-                        <p>Tegra: Introdução ao desenvolvimento com ferramentas low code.</p>
-                    </div>
-                </article>
-
-                <article class="card">
-                    <img src="img/ptech carreiras.jpeg" alt="17-10-24">
-                    <div class="card-content">
-                        <h3>17/10/2024</h3>
-                        <p>IOCHPE: Palestra online sobre o papel da educação na construção da carreira.</p>
+                        <h3>Itix: Criatividade e Inovação</h3>
+                        <p>Criatividade e inovação como diferenciais na área de tecnologia.</p>
                     </div>
                 </article>
             </div>
         </section>
 
         <section class="ano">
-            <h2>Terceiro Ano - 2025</h2>
+            <div class="section-header">
+                <h2>2023</h2>
+            </div>
             <div class="grid">
-                <article class="card">
-                    <img src="img/10-04-25.png" alt="10-04-25">
+                 <article class="card">
+                    <div class="card-image-wrapper">
+                        <img src="img/(3) 16-11-23/b.jpg" alt="16-11-23">
+                    </div>
+                    <div class="year-indicator">16 NOV</div>
                     <div class="card-content">
-                        <h3>10/04/2025</h3>
-                        <p>Itix: Superando os desafios do primeiro emprego na área de tecnologia.</p>
+                        <h3>Itix: Scrum e Sustentabilidade</h3>
+                        <p>Oficina com a Itix: uso de Scrum em projeto de sustentabilidade.</p>
                     </div>
                 </article>
-
                 <article class="card">
-                    <img src="img/16-04-25.jpeg" alt="16-04-25">
+                    <div class="card-image-wrapper">
+                        <img src="img/11 05.png" alt="11-05-23">
+                    </div>
+                    <div class="year-indicator">11 MAI</div>
                     <div class="card-content">
-                        <h3>16/04/2025</h3>
-                        <p>Itix: Conversa prática sobre carreira e suporte técnico no dia a dia.</p>
+                        <h3>Ética Profissional</h3>
+                        <p>Discussão sobre ética, valores e atitudes no ambiente profissional.</p>
                     </div>
                 </article>
-
                 <article class="card">
-                    <img src="img/23-04-25.png" alt="23-04-25">
+                    <div class="card-image-wrapper">
+                        <img src="img/(2) 05-05-23/IMG-20240329-WA0008.jpg" alt="05-05-23">
+                    </div>
+                    <div class="year-indicator">05 MAI</div>
                     <div class="card-content">
-                        <h3>23/04/2025</h3>
-                        <p>Eduzz: Estratégias para fortalecer o networking e perfil no LinkedIn.</p>
+                        <h3>Itix: Tecnologia e IA</h3>
+                        <p>Conversa sobre tecnologia e inteligência artificial com a equipe da Itix.</p>
                     </div>
                 </article>
-
                 <article class="card">
-                    <img src="img/13-05-25.png" alt="13-05-25">
+                    <div class="card-image-wrapper">
+                        <img src="img/05 05 2023.jpeg" alt="04-05-23">
+                    </div>
+                    <div class="year-indicator">04 MAI</div>
                     <div class="card-content">
-                        <h3>13/05/2025</h3>
-                        <p>Eduzz: Explorando o empreendedorismo e inovação dentro da TI.</p>
+                        <h3>Itix: Palestra Carreira</h3>
+                        <p>Palestra inspiradora sobre carreira com o fundador da Itix.</p>
                     </div>
                 </article>
-
                 <article class="card">
-                    <img src="img/20-08-25.png" alt="20-08-25">
-                    <div class="card-content">
-                        <h3>20/08/2025</h3>
-                        <p>Eduzz: Técnicas para melhorar a produtividade e a gestão do tempo.</p>
+                    <div class="card-image-wrapper">
+                        <img src="img/(1) 27-04-23/tegra p-tech.jpeg" alt="27-04-23">
                     </div>
-                </article>
-
-                <article class="card">
-                    <img src="img/27-08-25.jpeg" alt="27-08-25">
+                    <div class="year-indicator">27 ABR</div>
                     <div class="card-content">
-                        <h3>27/08/2025</h3>
-                        <p>Itix: Capacitação prática em bancos de dados para iniciantes.</p>
-                    </div>
-                </article>
-
-                <article class="card">
-                    <img src="img/Eduzz 03-09 1.jpeg" alt="03-09-25">
-                    <div class="card-content">
-                        <h3>03/09/2025</h3>
-                        <p>Eduzz: Segurança da informação e como proteger seus dados online.</p>
-                    </div>
-                </article>
-
-                <article class="card">
-                    <img src="img/ptech-16-09-eduzz1.png" alt="16-09-25">
-                    <div class="card-content">
-                        <h3>16/09/2025</h3>
-                        <p>Eduzz: Aplicações práticas da inteligência artificial no cotidiano.</p>
+                        <h3>Apresentação PTECH</h3>
+                        <p>Encontro com representantes da Tegra para conhecer o projeto PTECH.</p>
                     </div>
                 </article>
             </div>
@@ -360,8 +555,16 @@
     </main>
 
     <footer>
-        <p>&copy; 2025 - Portfólio PTECH. Todos os direitos reservados.</p>
+        <p>&copy; 2025 PORTFÓLIO PTECH. TODOS OS DIREITOS RESERVADOS.</p>
     </footer>
+
+    <script>
+        const spotlight = document.getElementById('spotlight');
+        document.addEventListener('mousemove', (e) => {
+            spotlight.style.left = (e.clientX) + 'px';
+            spotlight.style.top = (e.clientY) + 'px';
+        });
+    </script>
 
 </body>
 </html>
